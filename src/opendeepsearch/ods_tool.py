@@ -7,7 +7,8 @@ from opendeepsearch.prompts import ANALYSIS_PROMPT
 class OpenDeepSearchTool(Tool):
     name = "web_search"
     description = """
-    Performs web search based on your query (think a Google search) then returns the final answer that is processed by an llm."""
+    Performs web search based on your query (think a Google search) then returns the final answer that is processed by an llm.
+    This tool cannot access URLs directly."""
     inputs = {
         "query": {
             "type": "string",

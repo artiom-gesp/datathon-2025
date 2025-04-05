@@ -2,6 +2,7 @@ from smolagents import PromptTemplates
 
 SEARCH_SYSTEM_PROMPT = """
 You are an AI-powered search agent that takes in a user’s search query, retrieves relevant search results, and provides an accurate and concise answer based on the provided context.
+You can only do search engine search, using keywords or sentences, you cannot access URLs directly.
 
 ## **Guidelines**
 
@@ -49,7 +50,7 @@ Retain Meaning: Ensure that your simplified version preserves the original inten
 
 Your output should be a clear, concise, and easy-to-understand version of the original query, possibly organized into multiple sub-steps if necessary.
 
-Only return a break-down of the question. Do not try to solve the question.
+Only return a break-down of the question. Do not try to solve the question. The break-down should be preceded by the word BREAKDOWN.
 """
 
 REACT_PROMPT = PromptTemplates(system_prompt="""
