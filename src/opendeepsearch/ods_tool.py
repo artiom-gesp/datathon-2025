@@ -2,6 +2,7 @@ from typing import Optional, Literal
 from smolagents import Tool
 from litellm import completion, utils
 from opendeepsearch.ods_agent import OpenDeepSearchAgent
+from opendeepsearch.prompts import ANALYSIS_PROMPT
 
 class OpenDeepSearchTool(Tool):
     name = "web_search"
@@ -47,7 +48,7 @@ class OpenDeepSearchTool(Tool):
         )
 
 
-class QueryRephrasing(Tool):
+class QueryRephrasingTool(Tool):
     name = "query_rephrasing"
     description = """
     Detects, understands and explains complex queries.
@@ -62,8 +63,8 @@ class QueryRephrasing(Tool):
 
     def __init__(
         self,
-        model_name: Optional[str] = None,
-        system_prompt: Optional[str] = None,
+        model_name: str,
+        system_prompt: str = ANALYSIS_PROMPT,
         temperature: float = 0.2, # Slight variation while maintaining reliability
         top_p: float = 0.3
     ):
