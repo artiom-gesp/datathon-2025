@@ -125,14 +125,14 @@ def answer_single_question(example, model, answers_file, action_type, search_mod
         agent = model
     elif action_type == "codeact":
         agent = CodeAgent(
-            tools=[OpenDeepSearchTool(model_name=search_model_id or model.model_id)],
+            tools=[OpenDeepSearchTool(model_name=search_model_id or model.model_id, reranker="jina")],
             model=model,
             additional_authorized_imports=["numpy"],
             max_steps=15,
         )
     elif action_type == "tool-calling":
         agent = ToolCallingAgent(
-            tools=[OpenDeepSearchTool(model_name=search_model_id or model.model_id), PythonInterpreterTool()],
+            tools=[OpenDeepSearchTool(model_name=search_model_id or model.model_id, reranker="jina"), PythonInterpreterTool()],
             model=model,
             additional_authorized_imports=["numpy"],
             max_steps=15,
@@ -225,6 +225,9 @@ def answer_questions(
 
 if __name__ == "__main__":
     args = parse_arguments()
+    
+    os.environ["JINA_API_KEY"] = "jina_82c3dc9bff854127a655391710ba0daeak1tk-7JVt1XOLEthcBBr5yaQ7xS"
+
 
     eval_ds = load_eval_dataset(args.eval_tasks)
 
