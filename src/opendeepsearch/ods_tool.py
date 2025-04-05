@@ -1,5 +1,6 @@
 from typing import Optional, Literal
 from smolagents import Tool
+from litellm import completion, utils
 from opendeepsearch.ods_agent import OpenDeepSearchAgent
 
 class OpenDeepSearchTool(Tool):
@@ -44,3 +45,45 @@ class OpenDeepSearchTool(Tool):
             searxng_instance_url=self.searxng_instance_url,
             searxng_api_key=self.searxng_api_key
         )
+
+
+class QueryRephrasing(Tool):
+    name = "query_rephrasing"
+    description = """
+    Detects, understands and explains complex queries.
+    Only relevant information is retained. Ambiguous statements are rephrased using simple language."""
+    inputs = {
+        "query": {
+            "type": "string",
+            "description": "The input query.",
+        },
+    }
+    output_type = "string"
+
+    def __init__(
+        self,
+        model_name: Optional[str] = None,
+        system_prompt: Optional[str] = None,
+        temperature: float = 0.2, # Slight variation while maintaining reliability
+        top_p: float = 0.3
+    ):
+        super().__init__()
+        self.model = model_name  # LiteLLM model name
+        self.system_prompt = system_prompt
+        self.temperature = temperature
+        self.top_p = top_p
+
+    def forward(self, query: str):
+        messages = [
+            {"role": "system", "content": self.system_prompt},
+            {"role": "user", "content": f"Query:\n{query}\n"}
+        ]
+
+        response = completion(
+            model=self.model,
+            messages=messages,
+            temperature=self.temperature,
+            top_p=self.top_p
+        )
+
+        print(response.choices[0].message.content)

@@ -146,6 +146,11 @@ class OpenDeepSearchAgent:
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
         ]
+
+        print("QUERY:")
+        print(query)
+        print("CONTEXT:")
+        print(context)
         # Get completion from LLM
         response = completion(
             model=self.model,
@@ -153,6 +158,9 @@ class OpenDeepSearchAgent:
             temperature=self.temperature,
             top_p=self.top_p
         )
+
+        print("OUTPUT:")
+        print(response.choices[0].message.content)
 
         return response.choices[0].message.content
 
