@@ -34,7 +34,7 @@ class OpenDeepSearchTool(Tool):
         self.searxng_api_key = searxng_api_key
 
     def forward(self, query: str):
-        answer = self.search_tool.ask_sync(query, max_sources=2, pro_mode=True)
+        answer = self.search_tool.ask_sync(query, max_sources=2, pro_mode=False)
         return answer
 
     def setup(self):
@@ -51,6 +51,7 @@ class OpenDeepSearchTool(Tool):
 class QueryRephrasingTool(Tool):
     name = "query_rephrasing"
     description = """
+    Use this as your first tool, all the time.
     Detects, understands and explains complex queries.
     Only relevant information is retained. Ambiguous statements are rephrased using simple language."""
     inputs = {

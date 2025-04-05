@@ -48,6 +48,8 @@ Break Down Complex Parts: If the query contains multiple ideas or is particularl
 Retain Meaning: Ensure that your simplified version preserves the original intent and details of the query.
 
 Your output should be a clear, concise, and easy-to-understand version of the original query, possibly organized into multiple sub-steps if necessary.
+
+Only return a break-down of the question. Do not try to solve the question.
 """
 
 REACT_PROMPT = PromptTemplates(system_prompt="""
