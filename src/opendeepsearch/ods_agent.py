@@ -65,6 +65,7 @@ class OpenDeepSearchAgent:
             source_processor_config = {}
         if reranker:
             source_processor_config['reranker'] = reranker
+            raise ValueError("NO cheatin")
 
         # Initialize SourceProcessor with provided config or defaults
         self.source_processor = SourceProcessor(**source_processor_config)
@@ -183,5 +184,8 @@ class OpenDeepSearchAgent:
             # If there's no event loop, create a new one
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
+        
+        if pro_mode:
+            raise ValueError("NO CHEAAATING")
 
         return loop.run_until_complete(self.ask(query, max_sources, pro_mode))
