@@ -65,7 +65,6 @@ class OpenDeepSearchAgent:
             source_processor_config = {}
         if reranker:
             source_processor_config['reranker'] = reranker
-            raise ValueError("NO cheatin")
 
         # Initialize SourceProcessor with provided config or defaults
         self.source_processor = SourceProcessor(**source_processor_config)
@@ -148,10 +147,6 @@ class OpenDeepSearchAgent:
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
         ]
 
-        print("QUERY:")
-        print(query)
-        print("CONTEXT:")
-        print(context)
         # Get completion from LLM
         response = completion(
             model=self.model,
@@ -159,9 +154,6 @@ class OpenDeepSearchAgent:
             temperature=self.temperature,
             top_p=self.top_p
         )
-
-        print("OUTPUT:")
-        print(response.choices[0].message.content)
 
         return response.choices[0].message.content
 
@@ -185,7 +177,4 @@ class OpenDeepSearchAgent:
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
         
-        if pro_mode:
-            raise ValueError("NO CHEAAATING")
-
         return loop.run_until_complete(self.ask(query, max_sources, pro_mode))

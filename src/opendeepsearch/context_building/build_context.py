@@ -9,8 +9,8 @@ def extract_information(organic_results: List[Dict]) -> List[str]:
     for item in organic_results:
         if 'snippet' in item:
             result_parts = [
-                f"title: {item.get('title', 'N/A')}",
-                f"date authored: {item.get('date', 'N/A')}",
+                # f"title: {item.get('title', 'N/A')}",
+                # f"date authored: {item.get('date', 'N/A')}",
                 f"link: {item.get('link', 'N/A')}",
                 f"snippet: {item['snippet']}"
             ]
