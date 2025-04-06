@@ -13,7 +13,7 @@ os.environ["SERPER_API_KEY"] = "e638d76ed48e55d1a0f52634096d1e2bbfcba6c2"  # If 
 # os.environ["SEARXNG_INSTANCE_URL"] = "https://your-searxng-instance.com"
 # os.environ["SEARXNG_API_KEY"] = "your-api-key-here"  # Optional
 
-os.environ["FIREWORKS_API_KEY"] = "fw_3ZWPyAMiMEbfV8vorFT2gpcV"
+os.environ["FIREWORKS_API_KEY"] = "fw_3ZbxviZGMfmYbiJXsWEADriD"
 os.environ["JINA_API_KEY"] = "jina_41f45e97bb0e4f0584932a80299f7aa2OHnEzv2Y9IHLCegx8DrhslQa30HI"
 
 
